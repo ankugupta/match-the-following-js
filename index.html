@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>leader-line Basic Demo</title>
+<script src="leader-line.min.js"></script>
+<script src="anim-event.min.js"></script>
+<script src="in-view.min.js"></script>
+<style>
+.anchor, .anchor40, .anchor60, .anchor80-line, .anchor100-line, .anchor-text {
+  position: absolute;
+  background-color: #9ee7ea;
+  box-sizing: border-box;
+  padding: 5px 0;
+  font-size: 24px;
+  line-height: 1;
+  text-align: center;
+}
+
+.anchor40 {
+  width: 40px;
+  height: 40px;
+}
+
+.anchor60 {
+  width: 60px;
+  height: 60px;
+}
+
+.anchor80-line {
+  width: 80px;
+}
+
+.anchor100-line {
+  width: 100px;
+}
+
+.anchor-text {
+  font-size: 18px;
+}
+
+.stage {
+  position: relative;
+  margin-bottom: 1em;
+}
+
+.text-fill {
+  height: 100%;
+  overflow: hidden;
+  line-height: 1.1;
+  word-break: break-all;
+}
+
+.stage, .col, .leader-line {
+  font-family: Arial, sans-serif;
+}
+#ex-020-frame {
+  position: absolute;
+  left: 620px;
+  top: 80px;
+  width: 160px;
+  height: 310px;
+  border: 1px solid #ccc;
+  overflow-y: scroll;
+}
+#ex-020-frame > div {
+  width: 100%;
+  height: 555px;
+  background-color: #f0f0f0;
+}
+#ex-020-frame p {
+  margin: 0;
+}
+body { background-color:#fafafa;}
+.container { margin:150px auto; max-width:968px;}
+</style>
+<!-- <link href="https://www.cssscript.com/wp-includes/css/sticky.css" rel="stylesheet" type="text/css"> -->
+</head>
+
+<body>
+<script>
+ //---------TEST----------
+  
+  var clicks=[];
+  
+  //handle button clicks
+
+	function myFunction(elmnt) {
+		if(clicks.length < 1){
+			clicks.push(elmnt.id);
+		}
+		else{
+			//if a button is already clicked - draw line from that button to this button
+			console.log(`Draw line from ${clicks[0]} to ${elmnt.id}`); 
+			new LeaderLine(
+				document.getElementById(clicks[0]),
+				document.getElementById(elmnt.id),
+				{
+				  color: '#ef1e28',
+				  startPlug: 'square',
+				  endPlug: 'arrow2',
+				  startPlugColor: '#43bc5b',
+				  endPlugColor: '#1085e0',
+				  startPlugSize: 1.5,
+				  endPlugSize: 1.5,
+				  dash: true,
+				  endLabel: LeaderLine.pathLabel('This is a match')
+				}
+			);
+			//clear out clicks array
+			clicks = [];
+		}
+	}
+  
+  //---------END-----------
+</script>
+
+
+  
+<div class="container">
+<h1>leader-line Basic Demo</h1>
+<div id="ex-020" class="stage" style="width: 800px; height: 400px;">
+  <div id="ex-020-a" class="anchor40" style="left: 80px; top: 120px;"></div>
+  <div id="ex-020-b" class="anchor40" style="left: 360px; top: 0;"></div>
+  <div id="ex-020-c" class="anchor40" style="left: 300px; top: 160px;"></div>
+  <div id="ex-020-d" class="anchor40" style="left: 10px; top: 200px;"></div>
+  <div id="ex-020-e" class="anchor40" style="left: 80px; top: 320px;"></div>
+  <div id="ex-020-f" class="anchor40" style="left: 480px; top: 80px;"></div>
+  <div id="ex-020-g" class="anchor40" style="left: 720px; top: 10px;"></div>
+  <div id="ex-020-h" class="anchor40" style="left: 510px; top: 300px;"></div>
+  <div id="ex-020-frame">
+    <div>
+      <p style="padding: 5px; text-align: center;">Scroll this</p>
+      <div id="ex-020-i" class="anchor40" style="left: 70px; top: 250px;"></div>
+    </div>
+  </div>
+  <div id="ex-020-j" class="anchor40" style="left: 10px; top: 30px; width: auto; height: auto; font-size: 20px">Move mouse here</div>
+</div>
+<div>
+<button id="button1" type="button" onclick="myFunction(this)">ColA1</button><br>
+<button id="button2" type="button" onclick="myFunction(this)">ColA2</button>
+</div>
+<div style="float:right" >
+<button id="button3" type="button" onclick="myFunction(this)">ColB1</button><br>
+<button id="button4" type="button" onclick="myFunction(this)">ColB2</button>
+</div>
+</div>
+
+<script>
+window.addEventListener('load', function() {
+  'use strict';
+  
+ 
+  
+
+  new LeaderLine(
+    document.getElementById('ex-020-a'),
+    document.getElementById('ex-020-b'),
+    {
+      color: '#ef1e28',
+      startPlug: 'square',
+      endPlug: 'arrow2',
+      startPlugColor: '#43bc5b',
+      endPlugColor: '#1085e0',
+      startPlugSize: 1.5,
+      endPlugSize: 1.5,
+	  dash: true,
+      endLabel: LeaderLine.pathLabel('This is additional label')
+    }
+  );
+
+  new LeaderLine(
+    document.getElementById('ex-020-f'),
+    document.getElementById('ex-020-g'),
+    {
+      size: 8,
+      startPlugColor: '#ffff05',
+      endPlugColor: '#0c7d1a',
+      gradient: true
+    }
+  );
+
+  new LeaderLine(
+    document.getElementById('ex-020-c'),
+    document.getElementById('ex-020-d'),
+    {
+      color: 'black',
+      startPlug: 'disc',
+      endPlug: 'hand',
+      path: 'grid'
+    }
+  );
+
+  new LeaderLine(
+    document.getElementById('ex-020-h'),
+    document.getElementById('ex-020-f'),
+    {
+      size: 6,
+      outlineColor: '#1e71ef',
+      outline: true,
+      endPlugOutline: true,
+      dash: true,
+      path: 'arc',
+      startSocket: 'left',
+      endSocket: 'bottom'
+    }
+  );
+
+  new LeaderLine(
+    document.getElementById('ex-020-e'),
+    document.getElementById('ex-020-c'),
+    {
+      color: '#ecf373',
+      dropShadow: true,
+      endSocket: 'bottom'
+    }
+  );
+
+  var lineC = new LeaderLine(
+    document.getElementById('ex-020-c'),
+    document.getElementById('ex-020-b'),
+    {
+      path: 'straight'
+      // dash: {animation: true}
+    }
+  );
+  inView('#ex-020')
+    .on('enter', function() { lineC.dash = {animation: true}; })
+    .on('exit', function() { lineC.dash = false; });
+
+  new LeaderLine(
+    document.getElementById('ex-020-f'),
+    document.getElementById('ex-020-c'),
+    {
+      startPlug: 'arrow1',
+      startSocket: 'left',
+      endSocket: 'right',
+      startSocketGravity: [-140, -80],
+      endSocketGravity: [220, 180]
+    }
+  );
+
+  var lineH = new LeaderLine(
+    document.getElementById('ex-020-h'),
+    document.getElementById('ex-020-i')
+  );
+  document.getElementById('ex-020-frame').addEventListener('scroll', AnimEvent.add(function() {
+    lineH.position();
+  }), false);
+
+  new LeaderLine(
+    LeaderLine.mouseHoverAnchor(document.getElementById('ex-020-j'), 'draw', {style: {backgroundImage: null}}),
+    document.getElementById('ex-020-h'),
+    {color: 'rgba(255, 127, 80, 0.8)'}
+  );
+
+});
+</script>
+</body>
+</html>

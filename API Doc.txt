@@ -1,0 +1,33 @@
+https://anseki.github.io/leader-line/
+
+/*
+  Names of `options`      Keys of API (properties of `newOptions`)
+  ----------------------------------------
+  anchorSE                start, end
+  lineColor               color
+  lineSize                size
+  socketSE                startSocket, endSocket
+  socketGravitySE         startSocketGravity, endSocketGravity
+  plugSE                  startPlug, endPlug
+  plugColorSE             startPlugColor, endPlugColor
+  plugSizeSE              startPlugSize, endPlugSize
+  lineOutlineEnabled      outline
+  lineOutlineColor        outlineColor
+  lineOutlineSize         outlineSize
+  plugOutlineEnabledSE    startPlugOutline, endPlugOutline
+  plugOutlineColorSE      startPlugOutlineColor, endPlugOutlineColor
+  plugOutlineSizeSE       startPlugOutlineSize, endPlugOutlineSize
+  labelSEM                startLabel, endLabel, middleLabel
+*/
+myLine.setOptions(options)
+
+// EffectName: none, fade, draw
+// animOptions: {duration: 300, timing: 'linear'}
+myLine.show(EffectName, animOptions)
+myLine.hide(EffectName, animOptions)
+
+// re-positions the line
+myLine.position()
+
+// removes the line
+myLine.remove()
